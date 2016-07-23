@@ -1,7 +1,10 @@
 package com.example.taku.dagger2unittestsample.viewmodels;
 
+import com.example.taku.dagger2unittestsample.activities.BaseActivity;
 import com.example.taku.dagger2unittestsample.entities.User;
 import com.example.taku.dagger2unittestsample.models.GithubModel;
+
+import javax.inject.Inject;
 
 import rx.Observable;
 
@@ -12,7 +15,9 @@ public class MainViewModel {
 
     GithubModel githubModel;
 
-    public MainViewModel() {
+    @Inject
+    public MainViewModel(BaseActivity activity) {
+        activity.getComponent().createViewModelComponent().inject(this);
         githubModel = new GithubModel();
     }
 

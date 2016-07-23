@@ -7,11 +7,14 @@ import android.widget.Toast;
 import com.example.taku.dagger2unittestsample.R;
 import com.example.taku.dagger2unittestsample.viewmodels.MainViewModel;
 
+import javax.inject.Inject;
+
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
+    @Inject
     MainViewModel mainViewModel;
 
     @Override
@@ -19,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainViewModel = new MainViewModel();
+        getComponent().inject(this);
         mainViewModel.getUser("takuaraki")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
