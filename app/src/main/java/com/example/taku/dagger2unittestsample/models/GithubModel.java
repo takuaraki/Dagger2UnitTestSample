@@ -1,6 +1,7 @@
 package com.example.taku.dagger2unittestsample.models;
 
 import com.example.taku.dagger2unittestsample.entities.User;
+import com.example.taku.dagger2unittestsample.services.GitHubService;
 
 import javax.inject.Inject;
 
@@ -17,18 +18,14 @@ import rx.Observable;
 public class GithubModel {
 
     @Inject
-    Retrofit retrofit;
+    GitHubService gitHubService;
 
     @Inject
     public GithubModel() {
     }
 
     public Observable<User> getUser(String userName) {
-        return retrofit.create(GitHubService.class).getUser(userName);
+        return gitHubService.getUser(userName);
     }
 
-    public interface GitHubService {
-        @GET("users/{user}")
-        Observable<User> getUser(@Path("user") String userName);
-    }
 }

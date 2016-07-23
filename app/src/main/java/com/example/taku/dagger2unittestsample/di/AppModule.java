@@ -1,6 +1,7 @@
 package com.example.taku.dagger2unittestsample.di;
 
 import com.example.taku.dagger2unittestsample.MyApplication;
+import com.example.taku.dagger2unittestsample.services.GitHubService;
 
 import dagger.Module;
 import dagger.Provides;
@@ -26,12 +27,13 @@ public class AppModule {
     }
 
     @Provides
-    public Retrofit provideRetrofit() {
+    public GitHubService provideGitHubService() {
         return new Retrofit.Builder()
                 .baseUrl("https://api.github.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
+                .build()
+                .create(GitHubService.class);
     }
 
 }
