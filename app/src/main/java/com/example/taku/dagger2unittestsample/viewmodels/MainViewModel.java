@@ -13,12 +13,12 @@ import rx.Observable;
  */
 public class MainViewModel {
 
+    @Inject
     GithubModel githubModel;
 
     @Inject
     public MainViewModel(BaseActivity activity) {
         activity.getComponent().createViewModelComponent().inject(this);
-        githubModel = new GithubModel();
     }
 
     public Observable<User> getUser(String userName) {

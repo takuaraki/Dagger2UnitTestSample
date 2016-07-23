@@ -2,6 +2,8 @@ package com.example.taku.dagger2unittestsample.models;
 
 import com.example.taku.dagger2unittestsample.entities.User;
 
+import javax.inject.Inject;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -14,14 +16,11 @@ import rx.Observable;
  */
 public class GithubModel {
 
+    @Inject
     Retrofit retrofit;
 
+    @Inject
     public GithubModel() {
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
     }
 
     public Observable<User> getUser(String userName) {
